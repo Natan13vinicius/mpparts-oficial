@@ -11,8 +11,8 @@ document.getElementById('form')
 
     emailjs.sendForm(serviceID, templateID, this)
       .then(() => {
-        btn.value = 'Eviar';
-        alert('Eviado!');
+        btn.value = 'Enviado';
+        alert('E-mail enviado');
       }, (err) => {
         btn.value = 'Falha ao enviar';
         alert('Erro ao enviar');
