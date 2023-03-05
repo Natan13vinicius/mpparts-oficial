@@ -39,6 +39,9 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/globald5cb.css?c=20201102060223">
     <link rel='stylesheet' href='../cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/css/flag-icon.css'>
 
+    <!-- validaçao.js -->
+    <script src="validacao.js"></script>
+
 </head>
 
 <body>
@@ -309,23 +312,13 @@
 
                         </div>
                         <div class="container">
-                            <form id="form" onsubmit="return validarFormulario()">
+                            <form id="form">
                                 <div class="form-row">
                                     <div class="form-col">
                                         <label for="cnpj">CNPJ:</label>
-                                        <input type="text" name="cnpj" onchange="validarCnpj(this.value)" id="message"
-                                            placeholder="Digite seu CNPJ" />
+                                        <input type="text" name="cnpj" id="message" placeholder="Digite seu CNPJ" />
                                     </div>
-                                    <script>
-                                        function validarFormulario() {
-                                            var cnpj = document.getElementById("cnpj").value;
-                                            if (!validarCNPJ(cnpj)) {
-                                                alert("CNPJ inválido");
-                                                return false;
-                                            }
-                                            return true;
-                                        }
-                                    </script>
+
                                     <div class="form-col">
                                         <label for="inscricao-estadual">Inscrição Estadual:</label>
                                         <input type="text" id="message" name="inscricao-estadual"
@@ -617,36 +610,7 @@
         <script type="text/javascript" src="js/script.js"></script>
 
         <!-- validar cnpj -->
-        <script>
-            function validarCNPJ(cnpj) {
-                // Remove caracteres não numéricos
-                cnpj = cnpj.replace(/[^\d]+/g, '');
 
-                // Verifica se CNPJ tem tamanho correto
-                if (cnpj.length != 14)
-                    return false;
-
-                // Verifica se CNPJ é composto por números iguais
-                if (/^(\d)\1+$/.test(cnpj))
-                    return false;
-
-                // Calcula os dígitos verificadores
-                tamanho = cnpj.length - 2
-                numeros = cnpj.substring(0, tamanho);
-                digitos = cnpj.substring(tamanho);
-                soma = 0;
-                pos = tamanho - 7;
-                for (i = tamanho; i >= 1; i--) {
-                    soma += numeros.charAt(tamanho - i) * pos--;
-                    if (pos < 2) pos = 9;
-                } resultado = soma % 11 < 2 ? 0 : 11 - soma % 11; if (resultado != digitos.charAt(0)) return
-                false; tamanho = tamanho + 1; numeros = cnpj.substring(0, tamanho); soma = 0; pos = tamanho - 7; for (i = tamanho; i >=
-                    1; i--) {
-                    soma += numeros.charAt(tamanho - i) * pos--;
-                    if (pos < 2) pos = 9;
-                } resultado = soma % 11 < 2 ? 0 : 11 - soma % 11; if (resultado != digitos.charAt(1))
-                    return false; return true;
-            } </script>
 </body>
 
 </html>
